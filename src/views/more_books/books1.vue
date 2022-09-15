@@ -54,7 +54,6 @@
 .book-item{
     padding-bottom: 15px;
         padding-right: 20px;
-    min-width: 110px;
         width: 33.33333%;
 }
 .book-cover{
