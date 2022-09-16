@@ -28,6 +28,46 @@ export default {
           console.log(res)
           })
     },
+    // downloadFile(){
+    //     return new Promise((resolve, reject) => {
+    //       axios({
+    //         method: 'post',
+    //         url: "http://43.142.239.198/get_book", // 请求地址
+    //         data:  qs.stringify({
+    //         id:this.id
+    //         }), // 参数
+        
+    //         responseType: 'blob' // 表明返回服务器返回的数据类型
+    //       }).then(
+    //         response => {
+              
+    //           if(response.data.size==31){
+    //             alert('您还未登录，请登录后重试')
+    //             this.$router.push('/login/iphone')
+    //           }
+    //           console.log(URL.createObjectURL(response.data))
+    //           console.log(response)
+    //           let temp = response.headers["content-disposition"].split('/')[1]
+    //           console.log(temp)
+
+    //          const link=document.createElement('a')
+    //          link.download=temp
+    //          link.href=URL.createObjectURL(response.data)
+    //          link.target='_blank'
+    //          link.style.display='none'
+    //          document.body.appendChild(link)
+    //          link.click()
+
+    //          URL.revokeObjectURL(link.href)
+    //          document.body.removeChild(link)
+             
+    //         },
+    //         err => {
+    //           reject(err)
+    //         }
+    //       )
+    //     })
+    //   },
     downloadFile(){
         return new Promise((resolve, reject) => {
           axios({
@@ -37,30 +77,19 @@ export default {
             id:this.id
             }), // 参数
         
-            responseType: 'blob' // 表明返回服务器返回的数据类型
+            // responseType: 'blob' // 表明返回服务器返回的数据类型
           }).then(
             response => {
-              
-              if(response.data.size==31){
+              console.log(response)
+              if(response.data.code==1){
                 alert('您还未登录，请登录后重试')
                 this.$router.push('/login/iphone')
               }
-              console.log(URL.createObjectURL(response.data))
-              console.log(response)
-              let temp = response.headers["content-disposition"].split('/')[1]
-              console.log(temp)
-
-             const link=document.createElement('a')
-             link.download=temp
-             link.href=URL.createObjectURL(response.data)
-             link.target='_blank'
-             link.style.display='none'
-             document.body.appendChild(link)
-             link.click()
-
-             URL.revokeObjectURL(link.href)
-             document.body.removeChild(link)
+              else{
+                window.open('http://43.142.239.198'+response.data.url,'_search')
+              }
              
+              
             },
             err => {
               reject(err)
