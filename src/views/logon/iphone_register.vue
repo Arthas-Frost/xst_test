@@ -40,7 +40,7 @@
                <div class="input_logon" style="margin-top:24px">
                    <img src="../../assets/imgs/密码.svg" class="left-icon">
                    <div class="input-view">
-                           <input :type='Pwd' placeholder="请输入密码" length="6" class="logon-input" v-model="password">
+                           <input :type='Pwd' placeholder="请输入密码"  class="logon-input" v-model="password">
                            <p class="input-bottom"></p>
                    </div>
                    <!-- <button class="right-btn">获取验证码</button> -->
@@ -51,10 +51,13 @@
                <div class="input_logon" style="margin-top:24px">
                    <img src="../../assets/imgs/密码.svg" class="left-icon">
                    <div class="input-view">
-                           <input  placeholder="请确定密码" length="6" class="logon-input" v-model="repeat_password">
+                           <input :type='rePwd' placeholder="请确定密码"  class="logon-input" v-model="repeat_password">
                            <p class="input-bottom"></p>
                    </div>
                    <!-- <button class="right-btn">获取验证码</button> -->
+                   <div  @click="getrepassword">
+                       <img :src="reSrc" class="right-icon">
+                   </div>
                </div>
                <div class="logon-btn">
                    <button class="next-button"  @click="check_info(),zhuce()">注册</button>
@@ -76,7 +79,9 @@
                return{
                    // require获取图片路径
                    Src:require('../../assets/imgs/不可见.png'),
+                   reSrc:require('../../assets/imgs/不可见.png'),
                    Pwd:'password',
+                   rePwd:'password',
                    title:"",  //昵称
                    mobile:"",  //号码
                    password:"",  //密码
@@ -100,6 +105,15 @@
                    }else{
                        this.Src=require('../../assets/imgs/不可见.png'),
                        this.Pwd='password'
+                   }
+               },
+               getrepassword(){
+                   if (this.reSrc===require('../../assets/imgs/不可见.png')){
+                       this.reSrc=require('../../assets/imgs/可见.png'),
+                       this.rePwd='text'
+                   }else{
+                       this.reSrc=require('../../assets/imgs/不可见.png'),
+                       this.rePwd='password'
                    }
                },
                 zhuce(){
