@@ -14,7 +14,7 @@
                                     <!-- <img :src="item.imgsrc"  class="img-src"> -->
                                 </div>
                             </div>
-                            <p>{{item.bookname}}</p>
+                            <p class="two-line">{{item.bookname}}</p>
                         </div>
                     </div>
                 </div>
@@ -46,6 +46,15 @@
     }
 </script>
 <style scoped>
+.two-line{
+    
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+}
 .book-container{
     padding-left: 30px;
     padding-right: 15px;
